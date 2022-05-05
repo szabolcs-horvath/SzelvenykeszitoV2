@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Szelvenykeszito</string>
+    <string name="app_name">Szelvénykészítő</string>
+    <string name="ft">Ft</string>
+    <string name="bet">Tét</string>
+    <string name="my_games">Meccseim</string>
+    <string name="winnings">Nyeremény: %1$s Ft</string>
+    <string name="my_games_button">MECCSEIM</string>
+    <string name="choose_matches">Meccsek kiválasztása</string>
+    <string name="choose_league">Liga kiválasztása</string>
+    <string name="choose_button">KIVÁLASZT</string>
+    <string name="draw">Draw</string>
 </resources>

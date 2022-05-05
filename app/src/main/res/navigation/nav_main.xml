@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/sportsFragment">
+
+    <fragment
+        android:id="@+id/sportsFragment"
+        android:name="hu.bme.aut.android.szelvenykeszito.fragments.SportsFragment"
+        tools:layout="@layout/fragment_sports"
+        android:label="sports_fragment" >
+        <action
+            android:id="@+id/action_sportsFragment_to_gamesFragment"
+            app:destination="@+id/gamesFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/gamesFragment"
+        android:name="hu.bme.aut.android.szelvenykeszito.fragments.GamesFragment"
+        tools:layout="@layout/fragment_games"
+        android:label="games_fragment" >
+
+        <argument
+            android:name="sport"
+            app:argType="string" />
+    </fragment>
+
+
+
+</navigation>

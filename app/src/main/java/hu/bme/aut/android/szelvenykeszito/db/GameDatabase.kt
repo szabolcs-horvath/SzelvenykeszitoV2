@@ -2,13 +2,8 @@ package hu.bme.aut.android.szelvenykeszito.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import hu.bme.aut.android.szelvenykeszito.model.Bookmaker
-import hu.bme.aut.android.szelvenykeszito.model.Market
-import java.lang.reflect.Type
+import hu.bme.aut.android.szelvenykeszito.model.room.RoomGame
 
 @Database(
     version = 1,

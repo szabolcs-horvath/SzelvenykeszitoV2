@@ -12,11 +12,12 @@ class SzelvenykeszitoApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         gameDatabase = Room.databaseBuilder(
             applicationContext,
             GameDatabase::class.java,
             "game_database"
         ).fallbackToDestructiveMigration().build()
     }
+
+
 }

@@ -1,6 +1,7 @@
 package hu.bme.aut.android.szelvenykeszito.db
 
 import androidx.room.*
+import hu.bme.aut.android.szelvenykeszito.model.room.RoomGame
 
 @Dao
 interface GameDao {
