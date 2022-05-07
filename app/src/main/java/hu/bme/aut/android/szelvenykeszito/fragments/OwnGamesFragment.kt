@@ -1,5 +1,6 @@
 package hu.bme.aut.android.szelvenykeszito.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,9 +23,11 @@ import kotlin.math.roundToInt
 class OwnGamesFragment : Fragment(), GameAdapter.GameItemClickListener {
     private lateinit var binding: FragmentOwnGamesBinding
     private val adapter = GameAdapter(this)
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentOwnGamesBinding.inflate(layoutInflater)
+        progressDialog = ProgressDialog(context)
         return binding.root
     }
 
@@ -35,6 +38,11 @@ class OwnGamesFragment : Fragment(), GameAdapter.GameItemClickListener {
         binding.srlOwnGames.setOnRefreshListener { loadGamesFromDatabase() }
         binding.tvWinningsAmount.text = String.format(getString(R.string.winnings_amount), 0)
         binding.etBetSize.addTextChangedListener { updateWinnings() }
+
+        progressDialog.setCancelable(true)
+        progressDialog.setMessage("Meccseim betöltése...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.isIndeterminate = true
 
         loadGamesFromDatabase()
     }
@@ -58,11 +66,13 @@ class OwnGamesFragment : Fragment(), GameAdapter.GameItemClickListener {
     }
 
     private fun loadGamesFromDatabase() {
+        progressDialog.show()
         thread {
             val games = SzelvenykeszitoApplication.gameDatabase.gameDao().getAllGames().map { roomGame -> roomGame.toDisplayGame() }
             activity?.runOnUiThread {
                 adapter.update(games)
                 binding.srlOwnGames.isRefreshing = false
+                progressDialog.hide()
             }
         }
     }
