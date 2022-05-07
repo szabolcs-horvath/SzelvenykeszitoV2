@@ -6,7 +6,9 @@ import hu.bme.aut.android.szelvenykeszito.model.Bookmaker
 import hu.bme.aut.android.szelvenykeszito.model.Game
 import hu.bme.aut.android.szelvenykeszito.model.Market
 import hu.bme.aut.android.szelvenykeszito.model.Outcome
+import hu.bme.aut.android.szelvenykeszito.model.Result
 import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
+import hu.bme.aut.android.szelvenykeszito.model.display.DisplayResult
 import hu.bme.aut.android.szelvenykeszito.model.room.RoomGame
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -42,9 +44,8 @@ fun Game.toDisplayGame(): DisplayGame {
         this.away_team,
         this.sport_title,
         this.commence_time.toZonedDateTime(),
-        outcomes,
-        this.scores,
-        this.last_update?.toZonedDateTime()
+        this.completed,
+        outcomes
     )
 }
 
@@ -64,6 +65,7 @@ fun DisplayGame.toRoomGame(): RoomGame {
         this.away_team,
         this.sport_title,
         DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(this.commence_time).toString(),
+        this.completed,
         this.outcomes,
         this.selection
     )
@@ -76,9 +78,22 @@ fun RoomGame.toDisplayGame(): DisplayGame {
         this.awayTeam,
         this.sportTitle,
         this.commenceTime.toZonedDateTime(),
+        this.completed,
         this.outcomes,
-        null,
-        null,
         this.selection
+    )
+}
+
+fun Result.toDisplayResult(): DisplayResult {
+    return DisplayResult(
+        this.id,
+        this.sport_key,
+        this.sport_title,
+        this.home_team,
+        this.away_team,
+        this.completed,
+        this.commence_time.toZonedDateTime(),
+        this.scores,
+        this.last_update?.toZonedDateTime()
     )
 }

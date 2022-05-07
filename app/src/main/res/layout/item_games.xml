@@ -99,45 +99,6 @@
             tools:text="4.15" />
     </RadioGroup>
 
-<!--    <CheckBox-->
-<!--        android:id="@+id/cbHomeTeam"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:buttonTint="#FF0000"-->
-<!--        android:maxWidth="140dp"-->
-<!--        android:paddingStart="10dp"-->
-<!--        android:paddingEnd="10dp"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-<!--        tools:text="1.65" />-->
-
-<!--    <CheckBox-->
-<!--        android:id="@+id/cbDraw"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:buttonTint="#FF0000"-->
-<!--        android:paddingStart="10dp"-->
-<!--        android:paddingEnd="10dp"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/guideline3"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/guideline2"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-<!--        tools:text="3.00" />-->
-
-<!--    <CheckBox-->
-<!--        android:id="@+id/cbAwayTeam"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:buttonTint="#FF0000"-->
-<!--        android:maxWidth="140dp"-->
-<!--        android:paddingStart="10dp"-->
-<!--        android:paddingEnd="10dp"-->
-<!--        android:textSize="16sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/guideline4"-->
-<!--        tools:text="4.15" />-->
-
     <TextView
         android:id="@+id/tvCommenceTime"
         android:layout_width="match_parent"
@@ -150,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
-        tools:text="2022-05-23 15:00" />
+        tools:text="Kezdőrúgás: 2022-05-23 15:00" />
 
     <Button
         android:id="@+id/btClearSelection"

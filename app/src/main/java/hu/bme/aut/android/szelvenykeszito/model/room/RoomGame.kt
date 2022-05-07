@@ -15,6 +15,7 @@ data class RoomGame(
     val awayTeam: String,
     val sportTitle: String,
     val commenceTime: String,
+    val completed: Boolean,
     val outcomes: List<Outcome>,
     val selection: DisplayGame.Selection
 )

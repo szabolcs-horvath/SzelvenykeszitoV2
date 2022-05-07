@@ -10,9 +10,8 @@ data class DisplayGame(
     val away_team: String,
     val sport_title: String,
     val commence_time: ZonedDateTime,
+    val completed: Boolean,
     val outcomes: List<Outcome>,
-    val scores: List<Score>?,
-    val last_update: ZonedDateTime?,
     var selection: Selection = Selection.NONE
 ) {
     enum class Selection {

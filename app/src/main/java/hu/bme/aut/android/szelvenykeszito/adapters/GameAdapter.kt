@@ -15,8 +15,8 @@ import hu.bme.aut.android.szelvenykeszito.utility.setRadioGroup
 import hu.bme.aut.android.szelvenykeszito.utility.toRoomGame
 import kotlin.concurrent.thread
 
-class GameAdapter(private val listener: GameItemClickListener)
-    : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter(private val listener: GameItemClickListener):
+    RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     private val items = mutableListOf<DisplayGame>()
 

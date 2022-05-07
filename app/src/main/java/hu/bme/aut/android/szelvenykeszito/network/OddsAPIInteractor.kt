@@ -3,6 +3,7 @@ package hu.bme.aut.android.szelvenykeszito.network
 import android.os.Handler
 import android.os.Looper
 import hu.bme.aut.android.szelvenykeszito.model.Game
+import hu.bme.aut.android.szelvenykeszito.model.Result
 import hu.bme.aut.android.szelvenykeszito.model.Sport
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -48,7 +49,7 @@ class OddsAPIInteractor {
         runCallOnBackgroundThread(oddsParams, onSuccess, onError)
     }
 
-    fun getScores(sport: String, daysFrom: Int, onSuccess: (List<Game>, String) -> Unit, onError: (Throwable) -> Unit) {
+    fun getScores(sport: String, daysFrom: Int, onSuccess: (List<Result>, String) -> Unit, onError: (Throwable) -> Unit) {
         val scores = oddsAPI.getScores(sport, API_KEY, daysFrom)
         runCallOnBackgroundThread(scores, onSuccess, onError)
     }

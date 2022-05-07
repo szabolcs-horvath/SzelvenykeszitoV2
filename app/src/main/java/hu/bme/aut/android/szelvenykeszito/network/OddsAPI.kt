@@ -1,7 +1,7 @@
 package hu.bme.aut.android.szelvenykeszito.network
 
 import hu.bme.aut.android.szelvenykeszito.model.Game
-import hu.bme.aut.android.szelvenykeszito.model.Score
+import hu.bme.aut.android.szelvenykeszito.model.Result
 import hu.bme.aut.android.szelvenykeszito.model.Sport
 import retrofit2.Call
 import retrofit2.http.GET
@@ -25,10 +25,10 @@ interface OddsAPI {
         @Query("oddsFormat") oddsFormat: String?
     ): Call<List<Game>>
 
-    @GET("v4/sports{sport}/scores")
+    @GET("v4/sports/{sport}/scores")
     fun getScores(
         @Path("sport") sport: String,
         @Query("apiKey") apiKey: String,
         @Query("daysFrom") daysFrom: Int
-    ): Call<List<Game>>
+    ): Call<List<Result>>
 }
