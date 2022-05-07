@@ -19,6 +19,9 @@ class SportAdapter(private val listener: SportItemClickListener): RecyclerView.A
         holder.binding.btSport.setOnClickListener {
             listener.navigateToOdds(sportsItem.key)
         }
+        holder.binding.btResults.setOnClickListener {
+            listener.navigateToResults(sportsItem.key)
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -33,6 +36,7 @@ class SportAdapter(private val listener: SportItemClickListener): RecyclerView.A
 
     interface SportItemClickListener {
         fun navigateToOdds(sport: String)
+        fun navigateToResults(sport: String)
     }
 
     inner class SportViewHolder(val binding: ItemSportsBinding): RecyclerView.ViewHolder(binding.root)

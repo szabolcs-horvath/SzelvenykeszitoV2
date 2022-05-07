@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.szelvenykeszito.adapters.SportAdapter
 import hu.bme.aut.android.szelvenykeszito.application.SzelvenykeszitoApplication
@@ -41,7 +42,11 @@ class SportsFragment : Fragment(), SportAdapter.SportItemClickListener {
     }
 
     override fun navigateToOdds(sport: String) {
-        view?.findNavController()?.navigate(SportsFragmentDirections.actionSportsFragmentToGamesFragment(sport))
+        findNavController().navigate(SportsFragmentDirections.actionSportsFragmentToGamesFragment(sport))
+    }
+
+    override fun navigateToResults(sport: String) {
+        findNavController().navigate(SportsFragmentDirections.actionSportsFragmentToResultsFragment(sport))
     }
 
     private fun loadSports() {

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_sportsFragment_to_ownGamesFragment"
             app:destination="@id/ownGamesFragment" />
+        <action
+            android:id="@+id/action_sportsFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
     </fragment>
 
     <fragment
@@ -37,6 +40,19 @@
         android:name="hu.bme.aut.android.szelvenykeszito.fragments.OwnGamesFragment"
         tools:layout="@layout/fragment_own_games"
         android:label="own_games_fragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="hu.bme.aut.android.szelvenykeszito.fragments.ResultsFragment"
+        tools:layout="@layout/fragment_results"
+        android:label="results_fragment" >
+        <action
+            android:id="@+id/action_resultsFragment_to_ownGamesFragment"
+            app:destination="@id/ownGamesFragment" />
+        <argument
+            android:name="sport"
+            app:argType="string" />
     </fragment>
 
 </navigation>

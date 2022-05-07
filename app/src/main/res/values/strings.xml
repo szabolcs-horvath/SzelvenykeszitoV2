@@ -11,4 +11,6 @@
     <string name="choose_button">KIVÁLASZT</string>
     <string name="draw">Draw</string>
     <string name="commence_time">Starts at %1$s %2$s</string>
+    <string name="results">EREDMÉNYEK</string>
+    <string name="results_title">Eredmények</string>
 </resources>
