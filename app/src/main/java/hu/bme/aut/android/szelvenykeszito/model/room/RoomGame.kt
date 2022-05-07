@@ -11,10 +11,10 @@ import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
 @TypeConverters(GameTypeConverter::class)
 data class RoomGame(
     @PrimaryKey val id: String,
-    val sportTitle: String,
-    val commenceTime: String,
     val homeTeam: String,
     val awayTeam: String,
-    val outcomes: List<Outcome>?,
+    val sportTitle: String,
+    val commenceTime: String,
+    val outcomes: List<Outcome>,
     val selection: DisplayGame.Selection
 )

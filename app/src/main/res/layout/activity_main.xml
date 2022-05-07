@@ -6,35 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:background="?attr/colorSecondaryVariant"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/choose_league"
-        app:titleTextColor="@color/white">
-        <!-- TODO Itt a title-t fragmenttől függően változtatni -->
-
-        <Button
-            android:id="@+id/btMyGames"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:gravity="center"
-            android:text="@string/my_games_button"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="16sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -44,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

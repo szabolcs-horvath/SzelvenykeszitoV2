@@ -3,10 +3,12 @@
     <string name="ft">Ft</string>
     <string name="bet">Tét</string>
     <string name="my_games">Meccseim</string>
-    <string name="winnings">Nyeremény: %1$s Ft</string>
+    <string name="winnings">Várható nyeremény:</string>
+    <string name="winnings_amount">%1$s Ft</string>
     <string name="my_games_button">MECCSEIM</string>
     <string name="choose_matches">Meccsek kiválasztása</string>
     <string name="choose_league">Liga kiválasztása</string>
     <string name="choose_button">KIVÁLASZT</string>
     <string name="draw">Draw</string>
+    <string name="commence_time">Starts at %1$s %2$s</string>
 </resources>

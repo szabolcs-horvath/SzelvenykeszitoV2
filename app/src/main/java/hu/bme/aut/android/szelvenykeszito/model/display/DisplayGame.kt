@@ -5,8 +5,10 @@ import hu.bme.aut.android.szelvenykeszito.model.Score
 import java.time.ZonedDateTime
 
 data class DisplayGame(
+    val id: String,
     val home_team: String,
     val away_team: String,
+    val sport_title: String,
     val commence_time: ZonedDateTime,
     val outcomes: List<Outcome>,
     val scores: List<Score>?,

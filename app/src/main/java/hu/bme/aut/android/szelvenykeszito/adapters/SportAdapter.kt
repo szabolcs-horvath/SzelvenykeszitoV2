@@ -32,7 +32,6 @@ class SportAdapter(private val listener: SportItemClickListener): RecyclerView.A
     }
 
     interface SportItemClickListener {
-        fun onItemChanged(item: Sport)
         fun navigateToOdds(sport: String)
     }
 

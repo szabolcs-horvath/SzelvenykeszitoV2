@@ -7,6 +7,7 @@ import hu.bme.aut.android.szelvenykeszito.model.Game
 import hu.bme.aut.android.szelvenykeszito.model.Market
 import hu.bme.aut.android.szelvenykeszito.model.Outcome
 import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
+import hu.bme.aut.android.szelvenykeszito.model.room.RoomGame
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
@@ -36,8 +37,10 @@ fun Game.toDisplayGame(): DisplayGame {
     val outcomes: List<Outcome> = markets[0].outcomes!!
 
     return DisplayGame(
+        this.id,
         this.home_team,
         this.away_team,
+        this.sport_title,
         this.commence_time.toZonedDateTime(),
         outcomes,
         this.scores,
@@ -52,4 +55,30 @@ fun RadioGroup.setRadioGroup(selection: DisplayGame.Selection) {
         DisplayGame.Selection.DRAW -> this.check(R.id.rbDraw)
         DisplayGame.Selection.AWAY -> this.check(R.id.rbAwayTeam)
     }
+}
+
+fun DisplayGame.toRoomGame(): RoomGame {
+    return RoomGame(
+        this.id,
+        this.home_team,
+        this.away_team,
+        this.sport_title,
+        DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").format(this.commence_time).toString(),
+        this.outcomes,
+        this.selection
+    )
+}
+
+fun RoomGame.toDisplayGame(): DisplayGame {
+    return DisplayGame(
+        this.id,
+        this.homeTeam,
+        this.awayTeam,
+        this.sportTitle,
+        this.commenceTime.toZonedDateTime(),
+        this.outcomes,
+        null,
+        null,
+        this.selection
+    )
 }

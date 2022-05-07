@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.OwnGamesFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="?attr/colorPrimaryVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/my_games"
+        app:titleTextColor="@color/white">
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/etBetSize"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:hint="@string/bet"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tvFt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ft"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/etBetSize"
+        app:layout_constraintBaseline_toBaselineOf="@+id/etBetSize" />
+
+    <TextView
+        android:id="@+id/tvWinnings"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:minHeight="36dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="0dp"
+        android:paddingEnd="0dp"
+        android:paddingStart="0dp"
+        android:text="@string/winnings"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etBetSize" />
+
+    <TextView
+        android:id="@+id/tvWinningsAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="20sp"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        app:layout_constraintStart_toEndOf="@id/tvWinnings"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvWinnings" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlOwnGames"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvWinnings"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOwnGames"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:listitem="@layout/item_games" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
