@@ -1,8 +1,11 @@
 package hu.bme.aut.android.szelvenykeszito.model.display
 
 import hu.bme.aut.android.szelvenykeszito.model.Score
+import hu.bme.aut.android.szelvenykeszito.utility.KZonedDateTimeSerializer
 import java.time.ZonedDateTime
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class DisplayResult(
     val id: String,
     val sport_key: String,
@@ -10,7 +13,7 @@ data class DisplayResult(
     val home_team: String,
     val away_team: String,
     val completed: Boolean,
-    val commence_time: ZonedDateTime,
+    @Serializable(KZonedDateTimeSerializer::class) val commence_time: ZonedDateTime,
     val scores: List<Score>?,
-    val last_update: ZonedDateTime?
+    @Serializable(KZonedDateTimeSerializer::class) val last_update: ZonedDateTime?
 )

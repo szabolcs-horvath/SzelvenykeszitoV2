@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import hu.bme.aut.android.szelvenykeszito.model.room.RoomGame
 
 @Database(
-    version = 1,
+    version = 2,
     exportSchema = false,
     entities = [RoomGame::class]
 )

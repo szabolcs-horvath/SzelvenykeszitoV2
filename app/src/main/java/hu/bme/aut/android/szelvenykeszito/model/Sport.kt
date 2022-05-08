@@ -1,5 +1,8 @@
 package hu.bme.aut.android.szelvenykeszito.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Sport(
     val key: String,
     val active: Boolean,

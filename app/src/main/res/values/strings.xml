@@ -8,7 +8,7 @@
     <string name="my_games_button">MECCSEIM</string>
     <string name="choose_matches">Meccsek kiválasztása</string>
     <string name="choose_league">Liga kiválasztása</string>
-    <string name="choose_button">KIVÁLASZT</string>
+    <string name="odds">SZORZÓK</string>
     <string name="draw">Draw</string>
     <string name="commence_time">Kezdőrúgás: %1$s %2$s</string>
     <string name="last_update_time">Legutóbb frissítve: %1$s %2$s</string>

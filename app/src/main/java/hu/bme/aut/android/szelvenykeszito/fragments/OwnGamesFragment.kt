@@ -1,22 +1,23 @@
 package hu.bme.aut.android.szelvenykeszito.fragments
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.szelvenykeszito.R
 import hu.bme.aut.android.szelvenykeszito.adapters.GameAdapter
 import hu.bme.aut.android.szelvenykeszito.application.SzelvenykeszitoApplication
 import hu.bme.aut.android.szelvenykeszito.databinding.FragmentOwnGamesBinding
-import hu.bme.aut.android.szelvenykeszito.model.Game
 import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
-import hu.bme.aut.android.szelvenykeszito.utility.format
-import hu.bme.aut.android.szelvenykeszito.utility.toDisplayGame
-import hu.bme.aut.android.szelvenykeszito.utility.toRoomGame
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 
@@ -38,13 +39,46 @@ class OwnGamesFragment : Fragment(), GameAdapter.GameItemClickListener {
         binding.srlOwnGames.setOnRefreshListener { loadGamesFromDatabase() }
         binding.tvWinningsAmount.text = String.format(getString(R.string.winnings_amount), 0)
         binding.etBetSize.addTextChangedListener { updateWinnings() }
+        binding.btClearAll.setOnClickListener {
+            AlertDialog.Builder(context, R.style.MyDialogTheme)
+                .setTitle("Minden meccs törlése")
+                .setMessage("Biztos törölni szeretnéd az összes meccsedet?")
+                .setPositiveButton("Igen") { _, _ ->
+                    thread {
+                        SzelvenykeszitoApplication.gameDatabase.gameDao().deleteAllGames()
+                        activity?.runOnUiThread {
+                            loadGamesFromDatabase()
+                        }
+                    }
+                }
+                .setNegativeButton("Mégse") { _, _ ->
+                    Toast.makeText(context, "Akkor ne nyomogasd azt a gombot!", Toast.LENGTH_SHORT).show()
+                }
+                .show()
+        }
 
         progressDialog.setCancelable(true)
-        progressDialog.setMessage("Meccseim betöltése...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Meccseim betöltése...")
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progressDialog.isIndeterminate = true
 
-        loadGamesFromDatabase()
+        val bundleString = savedInstanceState?.getString("OWN_GAMES")
+        if (!bundleString.isNullOrEmpty()) {
+            val items = Json.decodeFromString<List<DisplayGame>>(bundleString)
+            if (items.isEmpty()) {
+                loadGamesFromDatabase()
+            } else {
+                adapter.update(items)
+            }
+        } else {
+            loadGamesFromDatabase()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val jsonList = Json.encodeToString(adapter.getItems())
+        outState.putString("OWN_GAMES", jsonList)
     }
 
     override fun onItemChanged(item: DisplayGame) {

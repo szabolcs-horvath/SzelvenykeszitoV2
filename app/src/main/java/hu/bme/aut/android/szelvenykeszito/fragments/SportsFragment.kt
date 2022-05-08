@@ -6,17 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.szelvenykeszito.adapters.SportAdapter
-import hu.bme.aut.android.szelvenykeszito.application.SzelvenykeszitoApplication
 import hu.bme.aut.android.szelvenykeszito.databinding.FragmentSportsBinding
 import hu.bme.aut.android.szelvenykeszito.model.Sport
 import hu.bme.aut.android.szelvenykeszito.network.OddsAPIInteractor
-import kotlin.concurrent.thread
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
 
 
 class SportsFragment : Fragment(), SportAdapter.SportItemClickListener {
@@ -42,11 +42,27 @@ class SportsFragment : Fragment(), SportAdapter.SportItemClickListener {
         }
 
         progressDialog.setCancelable(true)
-        progressDialog.setMessage("Meccsek letöltése...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Sportok letöltése...")
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progressDialog.isIndeterminate = true
 
-        loadSports()
+        val bundleString = savedInstanceState?.getString("SPORTS")
+        if (!bundleString.isNullOrEmpty()) {
+            val items = Json.decodeFromString<List<Sport>>(bundleString)
+            if (items.isEmpty()) {
+                loadSports()
+            } else {
+                adapter.update(items)
+            }
+        } else {
+            loadSports()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val jsonList = Json.encodeToString(adapter.getItems())
+        outState.putString("SPORTS", jsonList)
     }
 
     override fun navigateToOdds(sport: String) {
@@ -58,7 +74,7 @@ class SportsFragment : Fragment(), SportAdapter.SportItemClickListener {
     }
 
     private fun loadSports() {
-        progressDialog.show();
+        progressDialog.show()
         interactor.getSports(this::showSports, this::showError)
         binding.srlSports.isRefreshing = false
     }
@@ -66,11 +82,10 @@ class SportsFragment : Fragment(), SportAdapter.SportItemClickListener {
     private fun showSports(sports: List<Sport>, remainingRequests: String) {
         adapter.update(sports)
         progressDialog.hide()
-        //Toast.makeText(context, "Requests remaining for this API Key: $remainingRequests", Toast.LENGTH_SHORT).show()
     }
 
     private fun showError(e: Throwable) {
         e.printStackTrace()
-        progressDialog.setMessage("Nem sikerült betölteni a sportokat. :(")
+        progressDialog.setMessage("Nem sikerült letölteni a sportokat. :(")
     }
 }

@@ -16,7 +16,7 @@
         android:id="@+id/tvHomeTeam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:maxWidth="140dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
@@ -30,7 +30,7 @@
         android:id="@+id/tvDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="end"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:textSize="16sp"
@@ -59,43 +59,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        android:weightSum="3" >
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="@+id/tvAwayTeam"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeTeam"
+        app:layout_constraintTop_toTopOf="@+id/guideline4">
 
         <RadioButton
             android:id="@+id/rbHomeTeam"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="start"
             android:buttonTint="?attr/colorOnPrimary"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            android:layout_weight="1"
             tools:text="1.65" />
 
         <RadioButton
             android:id="@+id/rbDraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:buttonTint="?attr/colorOnPrimary"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            android:layout_weight="1"
             tools:text="3.00" />
 
         <RadioButton
             android:id="@+id/rbAwayTeam"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="end"
             android:buttonTint="?attr/colorOnPrimary"
+            android:layoutDirection="rtl"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            android:layout_weight="1"
-            android:layoutDirection="rtl"
             tools:text="4.15" />
     </RadioGroup>
 
@@ -108,6 +111,7 @@
         android:paddingTop="5dp"
         android:paddingEnd="10dp"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
@@ -115,12 +119,13 @@
 
     <Button
         android:id="@+id/btClearSelection"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:foreground="@drawable/cross"
         android:paddingStart="10dp"
-        android:paddingTop="5dp"
         android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />

@@ -6,14 +6,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.szelvenykeszito.R
-import hu.bme.aut.android.szelvenykeszito.application.SzelvenykeszitoApplication
 import hu.bme.aut.android.szelvenykeszito.databinding.ItemGamesBinding
-import hu.bme.aut.android.szelvenykeszito.model.Game
 import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
 import hu.bme.aut.android.szelvenykeszito.utility.format
 import hu.bme.aut.android.szelvenykeszito.utility.setRadioGroup
-import hu.bme.aut.android.szelvenykeszito.utility.toRoomGame
-import kotlin.concurrent.thread
 
 class GameAdapter(private val listener: GameItemClickListener):
     RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
@@ -66,6 +62,10 @@ class GameAdapter(private val listener: GameItemClickListener):
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun getItems(): List<DisplayGame> {
+        return items
+    }
 
     fun update(gameItems: List<DisplayGame>?) {
         items.clear()

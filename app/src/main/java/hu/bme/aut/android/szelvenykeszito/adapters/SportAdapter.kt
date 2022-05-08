@@ -26,6 +26,10 @@ class SportAdapter(private val listener: SportItemClickListener): RecyclerView.A
 
     override fun getItemCount(): Int = items.size
 
+    fun getItems(): List<Sport> {
+        return items
+    }
+
     fun update(sportItems: List<Sport>?) {
         items.clear()
         if (sportItems != null) {

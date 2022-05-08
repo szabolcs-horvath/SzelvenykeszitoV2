@@ -18,8 +18,9 @@ import hu.bme.aut.android.szelvenykeszito.model.Game
 import hu.bme.aut.android.szelvenykeszito.model.display.DisplayGame
 import hu.bme.aut.android.szelvenykeszito.network.OddsAPIInteractor
 import hu.bme.aut.android.szelvenykeszito.network.OddsParameters
-import hu.bme.aut.android.szelvenykeszito.utility.toDisplayGame
-import hu.bme.aut.android.szelvenykeszito.utility.toRoomGame
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import kotlin.concurrent.thread
 
 class GamesFragment : Fragment(), GameAdapter.GameItemClickListener {
@@ -47,11 +48,27 @@ class GamesFragment : Fragment(), GameAdapter.GameItemClickListener {
         }
 
         progressDialog.setCancelable(true)
-        progressDialog.setMessage("Meccsek letöltése...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Meccsek letöltése...")
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
         progressDialog.isIndeterminate = true
 
-        loadOdds(args.sport)
+        val bundleString = savedInstanceState?.getString("GAMES")
+        if (!bundleString.isNullOrEmpty()) {
+            val items = Json.decodeFromString<List<DisplayGame>>(bundleString)
+            if (items.isEmpty()) {
+                loadOdds(args.sport)
+            } else {
+                adapter.update(items)
+            }
+        } else {
+            loadOdds(args.sport)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val jsonList = Json.encodeToString(adapter.getItems())
+        outState.putSerializable("GAMES", jsonList)
     }
 
     override fun onItemChanged(item: DisplayGame) {
@@ -67,7 +84,7 @@ class GamesFragment : Fragment(), GameAdapter.GameItemClickListener {
     }
 
     private fun loadOdds(sport: String) {
-        progressDialog.show();
+        progressDialog.show()
         interactor.getOdds(OddsParameters(sport), this::showOdds, this::showError)
         binding.srlGames.isRefreshing = false
     }
@@ -75,11 +92,11 @@ class GamesFragment : Fragment(), GameAdapter.GameItemClickListener {
     private fun showOdds(games: List<Game>, remainingRequests: String) {
         adapter.update(games.map { g -> g.toDisplayGame() })
         progressDialog.hide()
-        Toast.makeText(context, "Requests remaining for this API Key: $remainingRequests", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "API kulcs hátralévő hívások: $remainingRequests", Toast.LENGTH_SHORT).show()
     }
 
     private fun showError(e: Throwable) {
         e.printStackTrace()
-        progressDialog.setMessage("Ehhez a sporthoz nem tudtunk meccseket betölteni. :(")
+        progressDialog.setMessage("Ehhez a sporthoz nem sikerült letölteni a meccseket. :(")
     }
 }

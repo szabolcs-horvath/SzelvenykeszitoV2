@@ -17,6 +17,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/my_games"
         app:titleTextColor="@color/white">
+
+        <Button
+            android:id="@+id/btClearAll"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@android:color/transparent"
+            android:foreground="@drawable/cross"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
