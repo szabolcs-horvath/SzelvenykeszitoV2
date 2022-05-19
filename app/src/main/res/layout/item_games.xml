@@ -66,7 +66,8 @@
 
         <RadioButton
             android:id="@+id/rbHomeTeam"
-            android:layout_width="130dp"
+            android:minWidth="130dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="start"
@@ -74,7 +75,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            tools:text="1.65" />
+            tools:text="1.65"/>
 
         <RadioButton
             android:id="@+id/rbDraw"
@@ -86,7 +87,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            tools:text="3.00" />
+            tools:text="30.00" />
 
         <RadioButton
             android:id="@+id/rbAwayTeam"
@@ -99,7 +100,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
-            tools:text="4.15" />
+            tools:text="14.15" />
     </RadioGroup>
 
     <TextView
